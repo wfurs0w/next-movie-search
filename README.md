@@ -1,6 +1,6 @@
 # Next TV
 
-[DEMO](https://wfurs0w.github.io/next-movie-search/)
+[DEMO](https://next-movie-search.vercel.app/login)
 
 ## About
 
