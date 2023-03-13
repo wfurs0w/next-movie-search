@@ -15,7 +15,7 @@ const MovieSearch = () => {
   const searchMovies = async () => {
     try {
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}&page=${currentPage}`
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}&page=${currentPage}`
       );
       const searchResults = response.data.Search || [];
       const filteredResults = searchResults.filter((movie: any) => {
