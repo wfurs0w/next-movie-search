@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { MovieCard } from './MovieCard';
 import { Paginator } from './Paginator';
@@ -31,8 +31,6 @@ const MovieSearch = () => {
       console.error(error);
     }
   };
-
-  
 
   const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);

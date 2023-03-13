@@ -22,14 +22,12 @@ const Header = ({ handleLogOut, favorites }: HeaderProps): JSX.Element => {
     title = 'Search - Next TV';
   }
 
-  const favoritesStorageKey = localStorage.getItem('favorites');
-
   useEffect(() => {
-    const storedFavorites = localStorage.getItem('favorites');
+    const storedFavorites = localStorage?.getItem('favorites');
     if (storedFavorites) {
       setFavoriteMovies(JSON.parse(storedFavorites));
     }
-  }, [favoritesStorageKey]);
+  }, [favorites]);
 
   const handleShowFavorites = () => {
     setShowFavorites(!showFavorites);
@@ -38,55 +36,62 @@ const Header = ({ handleLogOut, favorites }: HeaderProps): JSX.Element => {
   const handleRemoveFavorite = (movie: Movie) => {
     const newFavoriteMovies = favoriteMovies.filter((fm) => fm.imdbID !== movie.imdbID);
     setFavoriteMovies(newFavoriteMovies);
-    localStorage.setItem('favorites', JSON.stringify(newFavoriteMovies));
+    localStorage?.setItem('favorites', JSON.stringify(newFavoriteMovies));
   };
 
   return (
     <>
-    <Head>
-      <title>{title}</title>
-    </Head>
-    <header>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <div className="container">
-          <Link href="/search" className="text-decoration-none">
-            <Navbar.Brand>
-              <FaTv size={20} /> <span>Next TV</span>
-            </Navbar.Brand>
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto"></Nav>
-            <Nav>
-              <Nav.Link onClick={handleShowFavorites}>
-                <FaHeart size={20} /> {favoriteMovies.length}
-              </Nav.Link>
-              <Nav.Link href="/search">
-                <FaUser size={20} />
-              </Nav.Link>
-              <Button variant="danger" onClick={handleLogOut}>
-                LogOut
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </div>
-      </Navbar>
-      {showFavorites && (
-        <ul className="list-group bg-dark">
-          {favoriteMovies.map((movie) => (
-            <li key={movie.imdbID} className="list-group-item item bg-dark">
-                <Image 
-                  src={movie.Poster} 
-                  alt={movie.Title} 
-                  className="img-fluid rounded" 
-                  style={{ height: "40px" }}
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <header>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <div className="container">
+            <Link href="/search" className="text-decoration-none">
+              <Navbar.Brand>
+                <FaTv size={20} /> <span>Next TV</span>
+              </Navbar.Brand>
+            </Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto"></Nav>
+              <Nav>
+                <Nav.Link onClick={handleShowFavorites}>
+                  <FaHeart size={20} /> {favoriteMovies.length}
+                </Nav.Link>
+                <Nav.Link href="/search">
+                  <FaUser size={20} />
+                </Nav.Link>
+                <Button variant="danger" onClick={handleLogOut}>
+                  LogOut
+                </Button>
+              </Nav>
+            </Navbar.Collapse>
+          </div>
+        </Navbar>
+        {showFavorites && (
+          <ul className="list-group bg-dark">
+            {favoriteMovies.map((movie) => (
+              <li key={movie.imdbID} className="list-group-item item bg-dark">
+                <Image
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  className="img-fluid rounded"
+                  style={{ height: '40px' }}
                 />
-              <a className="text-decoration-none black" href={`https://www.imdb.com/title/${movie.imdbID}`}>
-                {movie.Title}
-              </a>
-              <Button variant="outline-danger" className="ms-3 p-1" onClick={() => handleRemoveFavorite(movie)}>
-                Remove
-              </Button>
+                <a
+                  className="text-decoration-none black"
+                  href={`https://www.imdb.com/title/${movie.imdbID}`}
+                >
+                  {movie.Title}
+                </a>
+                <Button
+                  variant="outline-danger"
+                  className="ms-3 p-1"
+                  onClick={() => handleRemoveFavorite(movie)}
+                >
+                  Remove
+                </Button>
               <style jsx>{`
                 .black {
                   color: white;

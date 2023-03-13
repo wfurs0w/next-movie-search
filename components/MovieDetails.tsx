@@ -11,6 +11,7 @@ interface MovieDetailProps {
 const MovieDetail = ({ handleAddToFavorites }: MovieDetailProps) => {
   const router = useRouter();
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [addToFavoritesDisabled, setAddToFavoritesDisabled] = useState<boolean>(false);
   const API_KEY = '6a9097c1';
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const MovieDetail = ({ handleAddToFavorites }: MovieDetailProps) => {
     if (movie) {
       handleAddToFavorites(movie);
       addToFavoritesList(movie);
+      setAddToFavoritesDisabled(true);
     }
   };
 
@@ -85,7 +87,11 @@ const MovieDetail = ({ handleAddToFavorites }: MovieDetailProps) => {
           <p>
             <strong>Rating:</strong> {movie.Actors}
           </p>
-          <Button className="btn btn-dark" onClick={handleAddToFavoritesClick}>
+          <Button 
+            className="btn btn-dark" 
+            onClick={handleAddToFavoritesClick} 
+            disabled={addToFavoritesDisabled}
+          >
             Add to favorites
           </Button>
           <a

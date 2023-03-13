@@ -26,9 +26,9 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 body">
-      <Form onSubmit={handleRegistration} className="border-0 p-4 rounded bg-white">
+      <Form onSubmit={handleRegistration} className="border-0 p-4 rounded bg-dark">
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label className="text-white">Email address</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -38,7 +38,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         </Form.Group>
 
         <Form.Group className="mt-2" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="text-white">Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Password"

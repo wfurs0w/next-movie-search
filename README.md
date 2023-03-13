@@ -1,6 +1,6 @@
 # Next TV
 
-[DEMO](https://wfurs0w.github.io/next-movie-app/)
+[DEMO](https://wfurs0w.github.io/next-movie-search/)
 
 ## About
 
